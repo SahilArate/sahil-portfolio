@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { tokens } from "@/tokens";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Card from "@/components/ui/Card";
+import Image from "next/image";
 
 const ABOUT_CARDS = [
   {
@@ -182,12 +183,12 @@ export default function About() {
                 animation: shouldReduceMotion ? "none" : "pulse 3s ease-in-out infinite",
               }}
             />
-            <img
-              src="/sahilarate.jpeg"
-              alt="Sahil Arate"
-              width={200}
-              height={200}
-              style={{
+            <Image
+            src="/sahilarate.jpeg"
+            alt="Sahil Arate"
+            width={200}
+            height={200}
+            style={{
                 width: "200px",
                 height: "200px",
                 borderRadius: "50%",
@@ -195,7 +196,8 @@ export default function About() {
                 position: "relative",
                 zIndex: 1,
                 border: `3px solid var(--color-bg-primary)`,
-              }}
+            }}
+            priority
             />
             <style>{`
               @keyframes spin { to { transform: rotate(360deg); } }
