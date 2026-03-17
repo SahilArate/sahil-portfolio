@@ -151,7 +151,7 @@ export default function Navbar() {
                       aria-current={isActive ? "page" : undefined}
                       style={{
                         display: "block",
-                        padding: "9px 16px",
+                        padding: "9px 10px",
                         borderRadius: tokens.radius.full,
                         fontFamily: "var(--font-display)",
                         fontSize: "13px",
