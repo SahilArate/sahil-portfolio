@@ -2,6 +2,15 @@ import type { Experience } from "@/types";
 
 export const experiences: Experience[] = [
   {
+    id: "suprmentr",
+    role: "Full Stack Developer intern",
+    company: "Suprmentr",
+    period: "2026",
+    description:
+      "Worked as a Full Stack Developer building modern web applications. Developed and maintained features across the full stack using React, Next.js and TypeScript. Collaborated on scalable architecture and delivered responsive, performant user interfaces.",
+    type: "internship",
+  },
+  {
     id: "prodigy",
     role: "Web Development Intern",
     company: "Prodigy Infotech",

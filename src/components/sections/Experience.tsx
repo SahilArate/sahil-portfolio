@@ -144,6 +144,26 @@ export default function Experience() {
                 </p>
 
                 {/* Type badge */}
+                {exp.id === "suprmentr" && (
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: tokens.spacing.sm, marginTop: tokens.spacing.md }}>
+                    {["React", "Next.js", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS"].map((tag) => (
+                      <span
+                        key={tag}
+                        style={{
+                          padding: "3px 10px",
+                          background: `color-mix(in srgb, ${tokens.colors.accentGreen} 8%, transparent)`,
+                          border: `1px solid color-mix(in srgb, ${tokens.colors.accentGreen} 20%, transparent)`,
+                          borderRadius: tokens.radius.full,
+                          fontSize: "10px",
+                          fontWeight: 600,
+                          color: tokens.colors.accentGreen,
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <div
                   style={{
                     display: "inline-flex",
