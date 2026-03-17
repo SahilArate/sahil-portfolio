@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN TOKENS — Light Mode
+   ============================================ */
+:root {
+  --color-bg-primary: #f4f5f7;
+  --color-bg-secondary: #ebedf0;
+  --color-bg-card: #ffffff;
+  --color-text-primary: #0e0f11;
+  --color-text-secondary: #3d4149;
+  --color-text-muted: #8a8f9a;
+  --color-accent-green: #16a34a;
+  --color-accent-purple: #7c3aed;
+  --color-accent-pink: #db2777;
+  --color-accent-amber: #d97706;
+  --color-border-primary: #e2e4e9;
+  --color-border-accent: color-mix(in srgb, #16a34a 40%, transparent);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  --shadow-hover: 0 4px 16px rgba(0,0,0,0.12), 0 12px 40px rgba(0,0,0,0.08);
+}
+
+/* ============================================
+   DESIGN TOKENS — Dark Mode
+   ============================================ */
+[data-theme="dark"] {
+  --color-bg-primary: #060608;
+  --color-bg-secondary: #0c0c12;
+  --color-bg-card: #101018;
+  --color-text-primary: #e2e4ec;
+  --color-text-secondary: #8a92a6;
+  --color-text-muted: #5a6070;
+  --color-accent-green: #63ffb4;
+  --color-accent-purple: #a78bfa;
+  --color-accent-pink: #f472b6;
+  --color-accent-amber: #fbbf24;
+  --color-border-primary: rgba(255,255,255,0.06);
+  --color-border-accent: rgba(99,255,180,0.3);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+  --shadow-hover: 0 4px 16px rgba(0,0,0,0.5), 0 12px 40px rgba(0,0,0,0.4);
+}
+
+/* ============================================
+   BASE RESET
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body, sans-serif);
+  overflow-x: hidden;
+  transition: background-color 400ms ease-out, color 400ms ease-out;
+  cursor: none;
+}
+
+/* Hide default cursor everywhere since we have custom cursor */
+* { cursor: none !important; }
+
+/* ============================================
+   NOISE TEXTURE OVERLAY
+   ============================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================================
+   MODERN CSS — Fluid typography
+   ============================================ */
+.text-fluid-xs   { font-size: clamp(0.7rem,   1.2vw, 0.75rem); }
+.text-fluid-sm   { font-size: clamp(0.75rem,  1.5vw, 0.875rem); }
+.text-fluid-base { font-size: clamp(0.875rem, 2vw,   1rem); }
+.text-fluid-lg   { font-size: clamp(1rem,     2.5vw, 1.25rem); }
+.text-fluid-xl   { font-size: clamp(1.25rem,  3vw,   1.75rem); }
+.text-fluid-hero { font-size: clamp(2.5rem,   6vw,   4.5rem); }
+
+/* ============================================
+   MODERN CSS — Logical properties layout
+   ============================================ */
+.section-wrapper {
+  padding-inline: clamp(1rem, 5vw, 4rem);
+  padding-block: clamp(4rem, 8vw, 7rem);
+  max-inline-size: 1200px;
+  margin-inline: auto;
+}
+
+/* ============================================
+   MODERN CSS — Container queries
+   ============================================ */
+.card-container {
+  container-type: inline-size;
+  container-name: card;
+}
+
+@container card (max-width: 300px) {
+  .card-tags { display: none; }
+  .card-metrics { flex-direction: column; }
+}
+
+/* ============================================
+   MODERN CSS — CSS nesting for cards
+   ============================================ */
+.portfolio-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 1.25rem;
+  transition: all 250ms ease-out;
+
+  &:hover {
+    border-color: var(--color-border-accent);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent-green);
+    outline-offset: 3px;
+  }
+
+  & .card-accent-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent-green), transparent);
+    transform: scaleX(0);
+    transition: transform 250ms ease-out;
+  }
+
+  &:hover .card-accent-line {
+    transform: scaleX(1);
+  }
+}
+
+/* ============================================
+   MODERN CSS — :has() selector
+   ============================================ */
+.nav-list:has(.nav-link:hover) .nav-link:not(:hover) {
+  opacity: 0.5;
+  transition: opacity 200ms ease-out;
+}
+
+/* ============================================
+   SKELETON LOADING
+   ============================================ */
+@keyframes skeleton-shimmer {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.skeleton-pulse {
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  background: var(--color-bg-secondary);
+  border-radius: 0.5rem;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-bg-secondary); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-primary);
+  border-radius: 9999px;
+
+  &:hover { background: var(--color-text-muted); }
+}
+
+/* ============================================
+   GRADIENT TEXT UTILITY
+   ============================================ */
+.gradient-text {
+  background: linear-gradient(135deg,
+    var(--color-accent-green) 0%,
+    var(--color-accent-purple) 60%,
+    var(--color-accent-pink) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   GLOW UTILITIES
+   ============================================ */
+.glow-green  { box-shadow: 0 0 30px color-mix(in srgb, var(--color-accent-green)  30%, transparent); }
+.glow-purple { box-shadow: 0 0 30px color-mix(in srgb, var(--color-accent-purple) 30%, transparent); }
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

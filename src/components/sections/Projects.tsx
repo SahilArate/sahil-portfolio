@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { tokens } from "@/tokens";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Card from "@/components/ui/Card";
@@ -237,7 +237,7 @@ function FeaturedProject({ project }: { project: Project }) {
                   borderRadius: tokens.radius.full,
                   fontSize: "11px",
                   fontWeight: 500,
-                  color: tokens.colors.textDim ?? tokens.colors.textMuted,
+                  color: tokens.colors.textMuted,
                 }}
               >
                 {tag}
@@ -270,7 +270,7 @@ function FeaturedProject({ project }: { project: Project }) {
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const shouldReduceMotion = useReducedMotion();
+  
   return (
     <Card accentColor={project.accentColor} delay={index * 0.1} padding={tokens.spacing.xl}>
       <div style={{ display: "flex", flexDirection: "column", gap: tokens.spacing.lg, height: "100%" }}>
