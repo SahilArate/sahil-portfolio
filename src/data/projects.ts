@@ -29,6 +29,30 @@ export const projects: Project[] = [
       { label: "TypeScript",      value: "100%" },
     ],
   },
+  // ─── ADD THIS AS THE FIRST ENTRY IN YOUR projects array ───────────────────────
+// File: src/data/projects.ts  (or wherever your projects array lives)
+// Make sure featured: true so it renders as FeaturedProject at the top.
+
+  {
+    id: "querygraph",
+    title: "QueryGraph",
+    description:
+      "LLM-powered SAP Order-to-Cash intelligence platform. Ask questions in plain English — the system generates SQL, queries a dual PostgreSQL + Neo4j database, and streams answers token-by-token.",
+    longDescription:
+      "A context graph system that unifies fragmented SAP O2C data into an interactive knowledge graph with a natural language query interface. Users can trace full order-to-cash flows, detect broken pipelines, and explore customer clusters — all through conversational queries powered by Groq's LLaMA 3.3 70B with streaming SSE responses.",
+    tags: ["Next.js 14", "FastAPI", "PostgreSQL", "Neo4j", "Groq LLaMA 3.3", "Cytoscape.js", "TypeScript", "Python", "SSE Streaming"],
+    icon: "🔮",
+    accentColor: "#63ffb4",
+    featured: true,
+    liveUrl: "https://query-graph-llm-powered-data-intell.vercel.app/",
+    githubUrl: "https://github.com/SahilArate/QueryGraph-LLM-Powered-Data-Intelligence",
+    metrics: [
+      { value: "70B", label: "LLM Params" },
+      { value: "2 DBs", label: "PostgreSQL + Neo4j" },
+      { value: "SSE", label: "Streaming Responses" },
+      { value: "7", label: "Graph Node Types" },
+    ],
+  },
   {
     id: "women-empowerment",
     title: "Women Empowerment Platform",

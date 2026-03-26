@@ -9,13 +9,112 @@ import Button from "@/components/ui/Button";
 import { projects } from "@/data/projects";
 import type { Project } from "@/types";
 
-function TopologyMini() {
+// ── QueryGraph-themed mini visual ────────────────────────────────────────────
+function QueryGraphVisual() {
   return (
     <div
       style={{ position: "relative", width: "160px", height: "160px", flexShrink: 0 }}
       aria-hidden="true"
     >
       {/* Pulse rings */}
+      {[0, 0.9].map((delay, i) => (
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
+            width: "90px",
+            height: "90px",
+            borderRadius: "50%",
+            border: "1px solid rgba(99,255,180,0.18)",
+            animation: `qgPulse 2.8s ease-out infinite`,
+            animationDelay: `${delay}s`,
+          }}
+        />
+      ))}
+
+      {/* Satellite nodes */}
+      {[
+        { top: "6px",   left: "50%",  transform: "translateX(-50%)", label: "BP",  color: "#63ffb4" },
+        { top: "50%",   right: "4px", transform: "translateY(-50%)", label: "SO",  color: "#a78bfa" },
+        { bottom: "6px",left: "50%",  transform: "translateX(-50%)", label: "INV", color: "#f472b6" },
+        { top: "50%",   left: "4px",  transform: "translateY(-50%)", label: "PAY", color: "#38bdf8" },
+      ].map((node, i) => (
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            width: "32px",
+            height: "32px",
+            background: "rgba(14,14,22,0.92)",
+            border: `1px solid ${node.color}44`,
+            borderRadius: "8px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "9px",
+            fontWeight: 700,
+            color: node.color,
+            letterSpacing: "0.04em",
+            animation: "qgNode 3.2s ease-in-out infinite",
+            animationDelay: `${i * 0.8}s`,
+            top: node.top,
+            bottom: node.bottom,
+            left: node.left,
+            right: node.right,
+            transform: node.transform,
+          }}
+        >
+          {node.label}
+        </div>
+      ))}
+
+      {/* Centre — LLM brain */}
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
+          width: "52px",
+          height: "52px",
+          background: "rgba(99,255,180,0.08)",
+          border: "1px solid rgba(99,255,180,0.35)",
+          borderRadius: "14px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "1.4rem",
+          boxShadow: "0 0 28px rgba(99,255,180,0.22)",
+          zIndex: 2,
+        }}
+      >
+        🧠
+      </div>
+
+      <style>{`
+        @keyframes qgPulse {
+          0%   { transform: translate(-50%,-50%) scale(0.75); opacity: 0.8; }
+          100% { transform: translate(-50%,-50%) scale(1.9);  opacity: 0; }
+        }
+        @keyframes qgNode {
+          0%,100% { border-color: rgba(255,255,255,0.06); box-shadow: none; }
+          50%     { box-shadow: 0 0 10px currentColor; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+// ── Generic topology visual for non-QueryGraph featured projects ──────────────
+function TopologyMini() {
+  return (
+    <div
+      style={{ position: "relative", width: "160px", height: "160px", flexShrink: 0 }}
+      aria-hidden="true"
+    >
       {[0, 0.8].map((delay, i) => (
         <div
           key={i}
@@ -31,12 +130,11 @@ function TopologyMini() {
           }}
         />
       ))}
-      {/* Corner nodes */}
       {[
-        { top: "8px",  left: "8px",   label: "☁" },
-        { top: "8px",  right: "8px",  label: "△" },
-        { bottom: "8px", left: "8px", label: "◎" },
-        { bottom: "8px", right: "8px",label: "▦" },
+        { top: "8px",    left: "8px",   label: "☁" },
+        { top: "8px",    right: "8px",  label: "△" },
+        { bottom: "8px", left: "8px",   label: "◎" },
+        { bottom: "8px", right: "8px",  label: "▦" },
       ].map((node, i) => (
         <div
           key={i}
@@ -61,7 +159,6 @@ function TopologyMini() {
           {node.label}
         </div>
       ))}
-      {/* Center */}
       <div
         style={{
           position: "absolute",
@@ -83,20 +180,25 @@ function TopologyMini() {
       </div>
       <style>{`
         @keyframes topoPulse {
-          0%{transform:translate(-50%,-50%) scale(0.8);opacity:0.8}
-          100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}
+          0%   { transform: translate(-50%,-50%) scale(0.8);  opacity: 0.8; }
+          100% { transform: translate(-50%,-50%) scale(1.8);  opacity: 0; }
         }
         @keyframes nodePulse {
-          0%,100%{border-color:rgba(255,255,255,0.08);box-shadow:none}
-          50%{border-color:rgba(99,255,180,0.3);box-shadow:0 0 12px rgba(99,255,180,0.2)}
+          0%,100% { border-color: rgba(255,255,255,0.08); box-shadow: none; }
+          50%     { border-color: rgba(99,255,180,0.3); box-shadow: 0 0 12px rgba(99,255,180,0.2); }
         }
       `}</style>
     </div>
   );
 }
 
+// ── FeaturedProject ───────────────────────────────────────────────────────────
 function FeaturedProject({ project }: { project: Project }) {
   const shouldReduceMotion = useReducedMotion();
+
+  // Pick the right visual based on project id
+  const Visual = project.id === "querygraph" ? QueryGraphVisual : TopologyMini;
+
   return (
     <motion.div
       initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
@@ -123,6 +225,7 @@ function FeaturedProject({ project }: { project: Project }) {
           background: `linear-gradient(90deg, ${tokens.colors.accentGreen}, ${tokens.colors.accentPurple}, ${tokens.colors.accentPink})`,
         }}
       />
+
       <div
         style={{
           padding: tokens.spacing.xxl,
@@ -262,15 +365,15 @@ function FeaturedProject({ project }: { project: Project }) {
 
         {/* Visual */}
         <div className="featured-visual">
-          <TopologyMini />
+          <Visual />
         </div>
       </div>
     </motion.div>
   );
 }
 
+// ── ProjectCard ───────────────────────────────────────────────────────────────
 function ProjectCard({ project, index }: { project: Project; index: number }) {
-  
   return (
     <Card accentColor={project.accentColor} delay={index * 0.1} padding={tokens.spacing.xl}>
       <div style={{ display: "flex", flexDirection: "column", gap: tokens.spacing.lg, height: "100%" }}>
@@ -370,6 +473,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
+// ── Section ───────────────────────────────────────────────────────────────────
 export default function Projects() {
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
@@ -394,12 +498,10 @@ export default function Projects() {
           gap: tokens.spacing.xl,
         }}
       >
-        {/* Featured project */}
         {featured.map((p) => (
           <FeaturedProject key={p.id} project={p} />
         ))}
 
-        {/* Regular project cards */}
         {rest.map((p, i) => (
           <ProjectCard key={p.id} project={p} index={i} />
         ))}
