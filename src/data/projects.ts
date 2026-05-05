@@ -2,6 +2,74 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    id: "weeklyai",
+    title: "WeeklyAI — Multi-Agent AI Weekly Planner",
+    description:
+      "Production-grade multi-agent AI system where 5 specialized LangGraph agents debate, negotiate, and autonomously build your perfect weekly schedule from plain-English goals — streamed live in real time.",
+    longDescription:
+      "WeeklyAI is a full-stack AI SaaS application powered by a 5-agent LangGraph orchestration pipeline. The Goal Agent parses user intent, the Calendar Agent identifies free slots, the Energy Agent maps peak productivity windows, the Balance Agent ensures no day is overloaded, and the Planner Agent resolves all conflicts to produce a final optimized weekly calendar. Every agent message streams live to the frontend via WebSockets, creating a real-time 'agent debate' experience. Built with Next.js 14, FastAPI, LangGraph, Groq LLaMA-3.3 70B, PostgreSQL + pgvector for RAG-based habit memory, Supabase Auth, Redis, and Docker. Features include a weekly calendar UI, task completion tracking with Pomodoro timer, analytics dashboard, AI chat interface, plan templates, and full auth with saved plans.",
+    tags: [
+      "Next.js 14",
+      "TypeScript",
+      "FastAPI",
+      "Python",
+      "LangGraph",
+      "LangChain",
+      "Multi-Agent AI",
+      "Groq LLaMA-3.3 70B",
+      "WebSockets",
+      "RAG",
+      "pgvector",
+      "PostgreSQL",
+      "Supabase",
+      "Redis",
+      "Docker",
+      "Tailwind CSS",
+    ],
+    liveUrl: "https://multi-agent-ai-weekly-planner.vercel.app/",
+    githubUrl: "https://github.com/SahilArate/Multi-agent-AI-weekly-planner",
+    featured: true,
+    icon: "🧠",
+    accentColor: "#3b82f6",
+    metrics: [
+      { label: "AI Agents", value: "5" },
+      { label: "Plan Time", value: "<15s" },
+      { label: "Stack", value: "Full" },
+      { label: "Streaming", value: "Live" },
+    ],
+  },
+  {
+    id: "querygraph",
+    title: "QueryGraph",
+    description:
+      "LLM-powered SAP Order-to-Cash intelligence platform. Ask questions in plain English — the system generates SQL, queries a dual PostgreSQL + Neo4j database, and streams answers token-by-token.",
+    longDescription:
+      "A context graph system that unifies fragmented SAP O2C data into an interactive knowledge graph with a natural language query interface. Users can trace full order-to-cash flows, detect broken pipelines, and explore customer clusters — all through conversational queries powered by Groq's LLaMA 3.3 70B with streaming SSE responses.",
+    tags: [
+      "Next.js 14",
+      "FastAPI",
+      "PostgreSQL",
+      "Neo4j",
+      "Groq LLaMA 3.3",
+      "Cytoscape.js",
+      "TypeScript",
+      "Python",
+      "SSE Streaming",
+    ],
+    icon: "🔮",
+    accentColor: "#63ffb4",
+    featured: true,
+    liveUrl: "https://query-graph-llm-powered-data-intell.vercel.app/",
+    githubUrl:
+      "https://github.com/SahilArate/QueryGraph-LLM-Powered-Data-Intelligence",
+    metrics: [
+      { value: "70B", label: "LLM Params" },
+      { value: "2 DBs", label: "PostgreSQL + Neo4j" },
+      { value: "SSE", label: "Streaming Responses" },
+      { value: "7", label: "Graph Node Types" },
+    ],
+  },
+  {
     id: "atomity",
     title: "Atomity — Cloud Cost Intelligence",
     description:
@@ -25,32 +93,8 @@ export const projects: Project[] = [
     accentColor: "#63ffb4",
     metrics: [
       { label: "Cloud Providers", value: "4" },
-      { label: "Components",      value: "10+" },
-      { label: "TypeScript",      value: "100%" },
-    ],
-  },
-  // ─── ADD THIS AS THE FIRST ENTRY IN YOUR projects array ───────────────────────
-// File: src/data/projects.ts  (or wherever your projects array lives)
-// Make sure featured: true so it renders as FeaturedProject at the top.
-
-  {
-    id: "querygraph",
-    title: "QueryGraph",
-    description:
-      "LLM-powered SAP Order-to-Cash intelligence platform. Ask questions in plain English — the system generates SQL, queries a dual PostgreSQL + Neo4j database, and streams answers token-by-token.",
-    longDescription:
-      "A context graph system that unifies fragmented SAP O2C data into an interactive knowledge graph with a natural language query interface. Users can trace full order-to-cash flows, detect broken pipelines, and explore customer clusters — all through conversational queries powered by Groq's LLaMA 3.3 70B with streaming SSE responses.",
-    tags: ["Next.js 14", "FastAPI", "PostgreSQL", "Neo4j", "Groq LLaMA 3.3", "Cytoscape.js", "TypeScript", "Python", "SSE Streaming"],
-    icon: "🔮",
-    accentColor: "#63ffb4",
-    featured: true,
-    liveUrl: "https://query-graph-llm-powered-data-intell.vercel.app/",
-    githubUrl: "https://github.com/SahilArate/QueryGraph-LLM-Powered-Data-Intelligence",
-    metrics: [
-      { value: "70B", label: "LLM Params" },
-      { value: "2 DBs", label: "PostgreSQL + Neo4j" },
-      { value: "SSE", label: "Streaming Responses" },
-      { value: "7", label: "Graph Node Types" },
+      { label: "Components", value: "10+" },
+      { label: "TypeScript", value: "100%" },
     ],
   },
   {
