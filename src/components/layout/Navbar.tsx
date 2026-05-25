@@ -92,36 +92,6 @@ export default function Navbar() {
               padding: `${tokens.spacing.sm} ${tokens.spacing.md}`,
             }}
           >
-            <div
-              style={{
-                width: "28px",
-                height: "28px",
-                borderRadius: tokens.radius.md,
-                background: tokens.colors.accentGreen,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="2.5" fill={isDark ? "#060608" : "#ffffff"} />
-                <circle cx="8" cy="2.5" r="1.5" fill={isDark ? "#060608" : "#ffffff"} opacity="0.7" />
-                <circle cx="8" cy="13.5" r="1.5" fill={isDark ? "#060608" : "#ffffff"} opacity="0.7" />
-                <circle cx="2.5" cy="8" r="1.5" fill={isDark ? "#060608" : "#ffffff"} opacity="0.7" />
-                <circle cx="13.5" cy="8" r="1.5" fill={isDark ? "#060608" : "#ffffff"} opacity="0.7" />
-              </svg>
-            </div>
-            <span
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: tokens.font.md,
-                fontWeight: 800,
-                color: tokens.colors.textPrimary,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              sahil
-            </span>
           </a>
 
           {/* Desktop Nav */}
