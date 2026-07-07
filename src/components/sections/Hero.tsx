@@ -281,7 +281,7 @@ export default function Hero() {
               View Projects
             </Button>
             <Button
-              href="/resume.pdf"
+              href="/Sahil_Arate.pdf"
               target="_blank"
               variant="secondary"
               size="lg"
