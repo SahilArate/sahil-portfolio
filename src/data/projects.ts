@@ -39,6 +39,36 @@ export const projects: Project[] = [
     ],
   },
   {
+  id: "codekeeper",
+  title: "Codekeeper",
+  description:
+    "AI-powered legacy code intelligence tool. Ask questions about any codebase in plain English — the system builds a knowledge graph from source files, git history, and docs using Cognee's memory lifecycle APIs.",
+  longDescription:
+    "Codekeeper gives legacy codebases a persistent memory. Paste a GitHub URL and it ingests every Python file, git commit, and markdown doc into Cognee's knowledge graph via remember() and cognify(). Developers can then ask why old decisions were made, trace dependencies with impact analysis, and see the actual knowledge graph visualized with React Flow. Uses all four Cognee memory lifecycle methods — remember, cognify, search with GRAPH_COMPLETION, improve from feedback, and forget for cleanup. Built for the WeMakeDevs × Cognee Hackathon 2026.",
+  tags: [
+    "Next.js 16",
+    "FastAPI",
+    "Cognee",
+    "Cognee Cloud",
+    "TypeScript",
+    "Python",
+    "React Flow",
+    "Knowledge Graph",
+    "fastembed",
+  ],
+  icon: "🧠",
+  accentColor: "#22c55e",
+  featured: true,
+  liveUrl: "https://cognee-hackathon-psi.vercel.app/",
+  githubUrl: "https://github.com/SahilArate/cognee_hackathon-",
+  metrics: [
+    { value: "4", label: "Memory Lifecycle APIs" },
+    { value: "3", label: "Data Sources" },
+    { value: "Graph", label: "GRAPH_COMPLETION Search" },
+    { value: "Cloud", label: "Cognee Cloud" },
+    ],
+  },
+  {
     id: "querygraph",
     title: "QueryGraph",
     description:
