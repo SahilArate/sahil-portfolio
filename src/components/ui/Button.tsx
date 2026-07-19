@@ -18,6 +18,7 @@ interface ButtonProps {
   icon?: React.ReactNode;
   ariaLabel?: string;
   target?: string;
+  download?: string | boolean;
 }
 
 const variantStyles: Record<ButtonVariant, React.CSSProperties> = {
@@ -71,6 +72,7 @@ export default function Button({
   icon,
   ariaLabel,
   target,
+  download,
 }: ButtonProps) {
   const shouldReduceMotion = useReducedMotion();
 
@@ -109,6 +111,7 @@ export default function Button({
         href={href}
         target={target}
         rel={target === "_blank" ? "noopener noreferrer" : undefined}
+        download={download}
         aria-label={ariaLabel}
         style={baseStyle}
         whileHover={disabled ? undefined : hoverStyle}
