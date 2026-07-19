@@ -27,6 +27,7 @@ export default function Home() {
     <QueryClientProvider client={queryClient}>
       {/* Custom animated cursor */}
 
+
       {/* Fixed navigation */}
       <Navbar />
 
