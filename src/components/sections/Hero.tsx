@@ -282,7 +282,7 @@ export default function Hero() {
             </Button>
             <Button
               href="/Sahil_Arate.pdf"
-              target="_blank"
+              download="Sahil_Arate.pdf"
               variant="secondary"
               size="lg"
               icon={<span>↓</span>}
