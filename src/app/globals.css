@@ -61,11 +61,8 @@ body {
   font-family: var(--font-body, sans-serif);
   overflow-x: hidden;
   transition: background-color 400ms ease-out, color 400ms ease-out;
-  cursor: none;
 }
 
-/* Hide default cursor everywhere since we have custom cursor */
-* { cursor: none !important; }
 
 /* ============================================
    NOISE TEXTURE OVERLAY
