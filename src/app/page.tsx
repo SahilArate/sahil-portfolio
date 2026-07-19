@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Cursor from "@/components/layout/Cursor";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
@@ -27,7 +26,6 @@ export default function Home() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Custom animated cursor */}
-      <Cursor />
 
       {/* Fixed navigation */}
       <Navbar />
