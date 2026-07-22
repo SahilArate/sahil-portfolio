@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function sendContactEmail(data: ContactFormData): Promise<void> {
   const { name, email, projectType, message } = data;
 
-  await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: "Portfolio Contact <onboarding@resend.dev>",
     to: process.env.CONTACT_EMAIL as string,
     subject: `New message from ${name} — ${projectType}`,
@@ -58,4 +58,7 @@ export async function sendContactEmail(data: ContactFormData): Promise<void> {
       </div>
     `,
   });
+  if (error) {
+  throw new Error(`Resend API error: ${error.message}`);
+  }
 }
