@@ -294,14 +294,14 @@ export default function Experience() {
             {[
               {
                 degree: "BE — Computer Science & Engineering",
-                school: "KLE Technological University",
-                period: "2022 – 2026",
+                school: "KLS Gogte Institute of Technology, Belagavi",
+                period: "2020 – 2026",
                 color: tokens.colors.accentGreen,
               },
               {
                 degree: "Diploma — Computer Science & Engineering",
-                school: "Government Polytechnic",
-                period: "2019 – 2022",
+                school: "Jain polytechnic, Belagavi",
+                period: "2020 – 2023",
                 color: tokens.colors.accentPurple,
               },
             ].map((edu, i) => (
