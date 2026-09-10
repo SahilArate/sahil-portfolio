@@ -24,6 +24,7 @@ export default function Navbar() {
   const activeSection = useActiveSection(SECTION_IDS);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [manualActive, setManualActive] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -31,9 +32,19 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Clear manual override once the observer catches up
+  useEffect(() => {
+    if (manualActive && activeSection === manualActive) {
+      setManualActive(null);
+    }
+  }, [activeSection, manualActive]);
+
+  const currentActive = manualActive ?? activeSection;
+
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
     const id = href.replace("#", "");
+    setManualActive(id);
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
@@ -46,6 +57,10 @@ export default function Navbar() {
 
   const bgColor = isDark ? "rgba(10,10,16,0.92)" : "rgba(255,255,255,0.92)";
   const mobileBg = isDark ? "rgba(10,10,16,0.95)" : "rgba(255,255,255,0.95)";
+
+  const pillTransition = shouldReduceMotion
+    ? { duration: 0 }
+    : { type: "spring" as const, stiffness: 380, damping: 30 };
 
   return (
     <>
@@ -107,10 +122,12 @@ export default function Navbar() {
               }}
             >
               {NAV_ITEMS.map((item) => {
-                const isActive = activeSection === item.href.replace("#", "");
+                const id = item.href.replace("#", "");
+                const isActive = currentActive === id;
                 const activeColor = isDark ? "#060608" : "#ffffff";
+
                 return (
-                  <li key={item.href}>
+                  <li key={item.href} style={{ position: "relative" }}>
                     <a
                       href={item.href}
                       className="nav-link"
@@ -120,8 +137,9 @@ export default function Navbar() {
                       }}
                       aria-current={isActive ? "page" : undefined}
                       style={{
+                        position: "relative",
                         display: "block",
-                        padding: "9px 10px",
+                        padding: "9px 14px",
                         borderRadius: tokens.radius.full,
                         fontFamily: "var(--font-display)",
                         fontSize: "13px",
@@ -129,11 +147,25 @@ export default function Navbar() {
                         letterSpacing: "0.02em",
                         textDecoration: "none",
                         color: isActive ? activeColor : tokens.colors.textMuted,
-                        background: isActive ? tokens.colors.accentGreen : "transparent",
-                        transition: `all ${tokens.transition.base}`,
+                        background: "transparent",
+                        transition: `color ${tokens.transition.base}`,
                         whiteSpace: "nowrap",
+                        zIndex: 1,
                       }}
                     >
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-pill"
+                          transition={pillTransition}
+                          style={{
+                            position: "absolute",
+                            inset: 0,
+                            background: tokens.colors.accentGreen,
+                            borderRadius: tokens.radius.full,
+                            zIndex: -1,
+                          }}
+                        />
+                      )}
                       {item.label}
                     </a>
                   </li>
@@ -209,7 +241,8 @@ export default function Navbar() {
               }}
             >
               {NAV_ITEMS.map((item) => {
-                const isActive = activeSection === item.href.replace("#", "");
+                const id = item.href.replace("#", "");
+                const isActive = currentActive === id;
                 return (
                   <a
                     key={item.href}
@@ -219,6 +252,7 @@ export default function Navbar() {
                       handleNavClick(item.href);
                     }}
                     style={{
+                      position: "relative",
                       padding: `${tokens.spacing.md} ${tokens.spacing.lg}`,
                       borderRadius: tokens.radius.md,
                       fontFamily: "var(--font-display)",
@@ -226,11 +260,25 @@ export default function Navbar() {
                       fontWeight: 600,
                       textDecoration: "none",
                       color: isActive
-                        ? tokens.colors.accentGreen
+                        ? isDark ? "#060608" : "#ffffff"
                         : tokens.colors.textSecondary,
-                      transition: `all ${tokens.transition.fast}`,
+                      transition: `color ${tokens.transition.fast}`,
+                      zIndex: 1,
                     }}
                   >
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-pill-mobile"
+                        transition={pillTransition}
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          background: tokens.colors.accentGreen,
+                          borderRadius: tokens.radius.md,
+                          zIndex: -1,
+                        }}
+                      />
+                    )}
                     {item.label}
                   </a>
                 );
