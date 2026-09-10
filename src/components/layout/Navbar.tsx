@@ -24,7 +24,6 @@ export default function Navbar() {
   const activeSection = useActiveSection(SECTION_IDS);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [manualActive, setManualActive] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -32,19 +31,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Clear manual override once the observer catches up
-  useEffect(() => {
-    if (manualActive && activeSection === manualActive) {
-      setManualActive(null);
-    }
-  }, [activeSection, manualActive]);
-
-  const currentActive = manualActive ?? activeSection;
-
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
     const id = href.replace("#", "");
-    setManualActive(id);
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
@@ -123,7 +112,7 @@ export default function Navbar() {
             >
               {NAV_ITEMS.map((item) => {
                 const id = item.href.replace("#", "");
-                const isActive = currentActive === id;
+                const isActive = activeSection === id;
                 const activeColor = isDark ? "#060608" : "#ffffff";
 
                 return (
@@ -242,7 +231,7 @@ export default function Navbar() {
             >
               {NAV_ITEMS.map((item) => {
                 const id = item.href.replace("#", "");
-                const isActive = currentActive === id;
+                const isActive = activeSection === id;
                 return (
                   <a
                     key={item.href}
