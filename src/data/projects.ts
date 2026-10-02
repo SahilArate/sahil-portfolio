@@ -39,6 +39,42 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "zamp-invoice-assistant",
+    title: "Zamp Invoice Assistant — AI-Powered Invoice-to-PO Matching",
+    description:
+      "Production-style invoice automation system where an LLM extracts invoice data and a fully deterministic rule engine independently decides approve, flag, or reject — with line-item-level PO matching and a complete audit trail.",
+    longDescription:
+      "Zamp Invoice Assistant is a full-stack AI automation system built for a real-world AP (accounts payable) workflow: take a messy vendor invoice PDF and turn it into an explainable payment decision. The core architectural principle is a strict separation between AI and business logic — a Groq-hosted LLM handles extraction only, self-reporting a per-field confidence score, while a deterministic rule engine (never the AI) makes the actual APPROVE/FLAG/REJECT call. The pipeline includes OCR fallback (Tesseract + Poppler) for scanned or corrupted PDFs with automatic garbled-text detection, a normalization layer handling multi-format currencies and dates, validation split into hard failures vs soft warnings, duplicate detection, and a two-tier PO matching engine — header-level (vendor, tolerance, remaining balance) plus line-item-level matching using fuzzy string similarity to catch price variance on individual line items that total-only comparison would miss. Every run is saved with a full step-by-step audit trail, viewable through a live run tracker and a searchable history dashboard. Backend containerized with Docker and deployed on Render; frontend deployed on Vercel.",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "Python",
+      "Pydantic",
+      "Groq LLM",
+      "OCR (Tesseract)",
+      "pdfplumber",
+      "RapidFuzz",
+      "Prompt Engineering",
+      "Deterministic Rule Engine",
+      "Docker",
+      "Render",
+      "Vercel",
+      "Tailwind CSS",
+    ],
+    liveUrl: "https://zamp-invoice-assistant.vercel.app/",
+    githubUrl: "https://github.com/SahilArate/zamp_invoice_assistant",
+    featured: true,
+    icon: "🧾",
+    accentColor: "#6366f1",
+    metrics: [
+      { label: "Pipeline Stages", value: "8" },
+      { label: "Edge Cases", value: "8+" },
+      { label: "Matching", value: "Line-level" },
+      { label: "Audit Trail", value: "Full" },
+    ],
+  },
+  {
   id: "codekeeper",
   title: "Codekeeper",
   description:
