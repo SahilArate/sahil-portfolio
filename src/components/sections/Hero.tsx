@@ -281,8 +281,8 @@ export default function Hero() {
               View Projects
             </Button>
             <Button
-              href="/SahilArate1.pdf"
-              download="SahilArate1.pdf"
+              href="/Sahil-.pdf"
+              download="Sahil-.pdf"
               variant="secondary"
               size="lg"
               icon={<span>↓</span>}
