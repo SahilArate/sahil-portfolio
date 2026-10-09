@@ -201,7 +201,7 @@ export default function Experience() {
             }}
           >
             {[
-              { num: "3",    label: "Internships",    color: tokens.colors.accentGreen },
+              { num: "4",    label: "Internships",    color: tokens.colors.accentGreen },
               { num: "2+",   label: "Years Learning", color: tokens.colors.accentPurple },
               { num: "5+",   label: "Projects Built", color: tokens.colors.accentPink },
               { num: "10+",  label: "Technologies",   color: tokens.colors.accentAmber },

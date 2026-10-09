@@ -262,9 +262,9 @@ export default function Hero() {
               maxWidth: "560px",
             }}
           >
-            Computer Science engineer from Belgaum, Karnataka.
-            I build fast, accessible, and beautifully designed web applications
-            using modern technologies and cloud computing.
+            Computer Science engineer from Belgaum, Karnataka, and Software Engineer Intern at Seratek System Pvt Ltd.
+            I build fast, accessible, and beautifully designed web applications, turning complex problems into clean,
+            scalable products using modern technologies and cloud computing.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -313,8 +313,8 @@ export default function Hero() {
             }}
           >
             {[
-              { num: "3+", label: "Internships" },
-              { num: "5+", label: "Projects" },
+              { num: "4", label: "Internships" },
+              { num: "10+", label: "Projects" },
               { num: "10+", label: "Technologies" },
             ].map((stat) => (
               <div
