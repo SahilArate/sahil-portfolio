@@ -3,36 +3,36 @@ import type { BlogPost } from "@/types";
 export const blogPosts: BlogPost[] = [
   {
     id: "1",
-    title: "Building a Multi-Cloud Topology Map with Next.js and Framer Motion",
+    title: "Building a Multi-Agent AI Weekly Planner with LangGraph and FastAPI",
     excerpt:
-      "How I built an animated infrastructure visualization for Atomity's frontend challenge — covering design tokens, scroll-triggered animations, and TanStack Query caching.",
+      "How I built WeeklyAI, a deployed multi-agent planner that turns plain-English goals into a conflict-free weekly schedule, covering typed agent state, live WebSocket streaming, and pgvector memory.",
     content: `
-When I received Atomity's frontend engineering challenge, I knew immediately that Option B — the multi-cloud topology map — was the more interesting problem.
+When I decided to build an AI project of my own, I knew immediately that a multi-agent planner was the more interesting problem than a single chatbot.
 
-## The Challenge
+### The Challenge
 
-The task was to recreate a section from Atomity's cloud optimization platform. I chose the infrastructure topology map showing AWS, Azure, GCP, and On-Premise nodes connected to a central resource chart.
+The task was to turn a messy goal like “gym three times, finish my report, and keep Sunday free” into a realistic weekly schedule in under 10 seconds. I split the work across five specialised agents: Goal, Calendar, Energy, Balance, and Planner.
 
-## Design Tokens First
+### State Contracts First
 
-Before writing a single component, I set up a token system. Every color, spacing value, and radius lives in \`tokens/index.ts\` and maps to CSS custom properties. This means dark mode is just a variable swap — zero component changes needed.
+Before writing a single prompt, I defined a typed StateGraph in LangGraph. Every agent is a node that reads and writes shared state, and the agents never call each other directly. This means adding or swapping an agent needs zero changes to the others.
 
-## Animation Strategy
+### Streaming Strategy
 
-My rule: every animation must have a reason. The connection lines draw themselves on scroll entry using \`scaleX\` animation — mimicking the feeling of a connection being established. Provider nodes pop in with spring physics, staggered by index so your eye moves naturally across the layout.
+My rule: every agent step must be visible. An async FastAPI WebSocket streams each agent’s output live to a Next.js 14 and TypeScript frontend, so users watch the plan take shape instead of waiting on a spinner. The Planner agent then resolves conflicts between the agents’ outputs, and surfaces them rather than hiding them.
 
-## TanStack Query Caching
+### Memory With pgvector
 
-Data is fetched from DummyJSON and transformed in \`dataMapper.ts\`. With \`staleTime: 5 minutes\`, the network tab shows exactly one request on first visit and instant data on every revisit.
+Past plans are stored as embeddings in pgvector on Supabase Postgres. Each agent retrieves the user’s past data before it responds, so later schedules adapt to what actually worked for that user instead of starting from scratch.
 
-## What I Learned
+### What I Learned
 
-Building with accessibility in mind from the start is far easier than retrofitting it. Every interactive element has keyboard support, aria labels, and respects \`prefers-reduced-motion\`.
+Multi-agent systems break at the hand-offs, not in individual prompts. Typed state contracts, step-by-step streaming for observability, and surfacing conflicts instead of silently resolving them made the whole system debuggable.
     `,
     date: "2025-03-15",
     readTime: "5 min read",
-    tags: ["Next.js", "Framer Motion", "TypeScript", "Case Study"],
-    slug: "building-multi-cloud-topology-map",
+    tags: ["LangGraph", "FastAPI", "AI", "Case Study"],
+    slug: "building-multi-agent-ai-weekly-planner",
   },
   {
     id: "2",
