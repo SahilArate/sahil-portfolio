@@ -10,7 +10,7 @@ const ABOUT_CARDS = [
   {
     icon: "🚀",
     title: "My Journey",
-    body: "I began with a Diploma in Computer Science and Engineering after 10th, and later pursued a BE in CSE to strengthen my foundation. Along the way I grew into a Full Stack Developer with expertise in modern web technologies and cloud computing.",
+    body: "I started with a Diploma in Computer Science and Engineering after 10th, then pursued a B.E. in CSE to strengthen my foundation, and along the way I grew into a full stack developer working with modern web technologies and cloud platforms. Today I’m a Software Engineer Intern at Seratek Systems, where I build scalable backend services and LLM-powered AI agents with RAG pipelines. Earlier, I built an agentic mentor-matching platform at SuperMentr and shipped it on AWS with automated CI/CD. Outside of work, I build projects like WeeklyAI and QueryGraph, and I contribute to open source projects like Cal.com, Supabase and Appwrite.",
     accent: "#63ffb4",
   },
   {
@@ -22,7 +22,7 @@ const ABOUT_CARDS = [
   {
     icon: "🎯",
     title: "Goals",
-    body: "My goal is to grow as a skilled Full Stack Developer while sharpening problem-solving skills through Java DSA. I aspire to build innovative solutions using modern technologies and cloud computing that make a real-world impact.",
+    body: "I’m a full stack developer building AI-driven projects with LLM agents and RAG, from the backend and data layer to a real-time frontend. My goal is to keep shipping intelligent, production-ready applications on modern cloud platforms while sharpening my problem-solving through Java DSA.",
     accent: "#f472b6",
   },
 ];
